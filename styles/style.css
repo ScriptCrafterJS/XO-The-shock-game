@@ -1,0 +1,37 @@
+/* General settings [START]*/
+:root {
+  --clr-primary-black: #332941;
+  --clr-primary-navy: #3b3486;
+  --clr-primary-yellow: #f8e559;
+  --clr-primary-purple: #864af9;
+
+  --font-family: "Jersey 10", sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+/* General settings [END]*/
+/* Header Styling [START] */
+.header .nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--clr-primary-navy);
+}
+.header .nav img {
+  width: 50px;
+  height: 45px;
+}
+.header .nav .nav__links {
+  list-style: none;
+}
+.header .nav .nav__links .nav__link {
+  text-decoration: none;
+  color: var(--clr-primary-yellow);
+  font-size: 2rem;
+}
+/* Header Styling [END] */
