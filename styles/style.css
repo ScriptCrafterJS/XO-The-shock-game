@@ -19,7 +19,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   background-color: var(--clr-primary-navy);
 }
 .header .nav img {
@@ -35,3 +35,63 @@
   font-size: 2rem;
 }
 /* Header Styling [END] */
+/* Home-page Styling [START] */
+.home {
+  background-image: url("../images/Grid.png");
+  position: relative;
+  z-index: 0;
+  background-color: var(--clr-primary-navy);
+}
+.home .overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  z-index: -1;
+}
+
+.home .home__title {
+  margin-inline: auto;
+  width: fit-content;
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  letter-spacing: 3px;
+  line-height: 1;
+  padding-top: 1rem;
+}
+.home .home__title div:first-child {
+  position: relative;
+}
+.home .home__title div:first-child::before {
+  position: absolute;
+  content: "";
+  width: 30rem;
+  height: 4px;
+  background-color: #fff;
+  left: -24rem;
+  top: 63%;
+}
+.home .home__title div:first-child::after {
+  position: absolute;
+  content: "";
+  width: 30rem;
+  height: 4px;
+  background-color: #fff;
+  right: -24rem;
+  top: 63%;
+}
+.home .home__title span {
+  font-size: 5rem;
+}
+.home .home__title span:nth-of-type(1) {
+  color: var(--clr-primary-yellow);
+}
+.home .home__title span:nth-of-type(2) {
+  color: var(--clr-primary-purple);
+}
+.home .home__title div:last-child {
+  display: flex;
+  gap: 1rem;
+}
+/* Home-page Styling [END] */
