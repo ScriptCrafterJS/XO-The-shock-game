@@ -104,6 +104,7 @@
 }
 .home .home-section img {
   width: 10rem;
+  height: 15rem;
 }
 .home .home-section img:first-child {
   transform: rotateY(180deg) rotateZ(15deg);
@@ -117,18 +118,24 @@
   gap: 2rem;
 }
 .home .home-section__modes button {
-  font-size: 1.5rem;
+  font-size: 3.5rem;
   padding: 0.5rem 1rem;
   background-color: var(--clr-primary-purple);
-  color: white;
+
   letter-spacing: 1px;
   cursor: pointer;
   transition: 0.3s;
   position: relative;
 }
+.home .home-section__modes button a {
+  text-decoration: none;
+  color: white;
+}
+.home .home-section__modes button:last-child a {
+  color: var(--clr-primary-black);
+}
 .home .home-section__modes button:last-child {
   background-color: var(--clr-primary-yellow);
-  color: var(--clr-primary-black);
 }
 .home .home-section__modes button:hover {
   scale: 1.2;

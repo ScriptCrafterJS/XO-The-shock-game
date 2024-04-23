@@ -1,0 +1,134 @@
+/* Difficulty Modes Styling [START] */
+body {
+  background-color: var(--clr-primary-navy);
+}
+main {
+  background-image: url("../images/Grid.png");
+  position: relative;
+  z-index: 0;
+  background-color: var(--clr-primary-navy);
+  height: 100vh;
+}
+main .overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  z-index: -1;
+}
+.navbar {
+  padding: 0.1rem 0 0 0;
+}
+.navbar .navbar--home {
+  font-size: 2.5rem;
+  background-color: var(--clr-primary-purple);
+  width: fit-content;
+  margin-top: 1rem;
+  padding: 1rem;
+  letter-spacing: 1.2px;
+  position: relative;
+}
+.navbar .navbar--home::before {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.155);
+  left: 0;
+  top: 0;
+  transition: 0.3s;
+}
+.navbar .navbar--home:hover::before {
+  width: 100%;
+}
+.navbar .navbar--home a {
+  text-decoration: none;
+  color: var(--clr-primary-black);
+}
+.difficulty-modes {
+  width: fit-content;
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.difficulty-modes .difficulty-modes__title {
+  font-size: 3rem;
+  color: white;
+  letter-spacing: 2px;
+  position: relative;
+}
+.difficulty-modes .difficulty-modes__title::before {
+  position: absolute;
+  content: "";
+  width: 28rem;
+  height: 4px;
+  background-color: #fff;
+  left: -24rem;
+  top: 63%;
+}
+.difficulty-modes .difficulty-modes__title::after {
+  position: absolute;
+  content: "";
+  width: 28rem;
+  height: 4px;
+  background-color: #fff;
+  right: -24rem;
+  top: 63%;
+}
+.difficulty-modes .difficulties {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.difficulty-modes .difficulties {
+  width: fit-content;
+  margin-inline: auto;
+}
+.difficulty-modes .center {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.difficulty-modes .center img {
+  width: 10rem;
+  height: 15rem;
+}
+.difficulty-modes .center img:first-child {
+  transform: rotateY(180deg) rotateZ(15deg);
+}
+.difficulty-modes .center img:last-child {
+  transform: rotateZ(15deg);
+}
+.difficulty-modes .difficulties .diff-btn {
+  font-size: 5rem;
+  padding-inline: 2rem;
+  transition: 0.3s;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+.difficulty-modes .difficulties .diff-btn:hover {
+  scale: 1.2;
+}
+.difficulty-modes .difficulties .diff-btn:first-child {
+  transform: rotateZ(10deg);
+  background-color: #20bf6b;
+}
+.difficulty-modes .difficulties .diff-btn:nth-child(2) {
+  transform: rotateZ(-10deg);
+  background-color: #fa8231;
+}
+.difficulty-modes .difficulties .diff-btn:last-child {
+  transform: rotateZ(10deg);
+  background-color: #eb3b5a;
+}
+.difficulty-modes .difficulties .diff-btn a {
+  text-decoration: none;
+  color: white;
+}
+.quote {
+  color: white;
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
+}
+/* Difficulty Modes Styling [END] */
