@@ -1,0 +1,87 @@
+/* player info styling [START] */
+.user-input {
+  width: fit-content;
+  margin-inline: auto;
+  background-color: var(--clr-primary-purple);
+  padding: 3rem;
+  gap: 5rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+  font-size: 1.5rem;
+  width: 60rem;
+  height: 25rem;
+}
+.user-input .user-input__left {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.user-input .user-input__left input {
+  margin-bottom: 1rem;
+  outline: none;
+  caret-color: var(--clr-primary-purple);
+  text-align: center;
+  font-size: 1.7rem;
+}
+.user-input .user-input__left label {
+  font-size: 1.9rem;
+}
+.user-input .user-input__left input[type="checkbox"] {
+  transform: scale(2);
+  margin-top: 0.5rem;
+}
+.user-input .user-input__right {
+  align-self: center;
+}
+.user-input .user-input__right h2 {
+  margin-bottom: 1rem;
+}
+.user-input .user-input__left .btnSubmit {
+  align-self: center;
+  font-size: 3.7rem;
+  padding-inline: 2rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.user-input .user-input__left .btnSubmit:hover {
+  scale: 1.2;
+}
+.user-input .user-input__left div {
+  position: relative;
+}
+
+.user-input .user-input__right {
+  text-align: center;
+}
+.user-input .user-input__right .cards {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.user-input__right .cards .card {
+  border: solid 5px;
+  padding: 0.5rem;
+  cursor: pointer;
+  width: 15rem;
+  z-index: 1;
+}
+.user-input__right .cards .card__symbol {
+  font-size: 10rem;
+}
+.user-input__right .cards .x-card {
+  background-color: #35a3f3;
+  border-color: #2092da;
+}
+
+.user-input__right .cards .o-card {
+  background-color: #fc5c65;
+  border-color: #eb3b5a;
+}
+.user-input__right .cards .active {
+  background-color: var(--clr-primary-yellow);
+  border-color: #e1c80e;
+  scale: 1.1;
+}
+/* player info styling [END] */

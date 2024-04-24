@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe Shock</title>
+    <!-- css styles -->
+    <link rel="stylesheet" href="../styles/normalize.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/difficulty-modes.css" />
+
+    <link rel="stylesheet" href="../styles/player-info.css" />
+    <!-- Google fonts "jersey" links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="overlay"></div>
+      <nav class="navbar">
+        <h2 class="navbar--home"><a type="button" href="">&lt; Home</a></h2>
+      </nav>
+      <section class="user-input">
+        <form class="user-input__left" action="#">
+          <label for="username">Username:</label>
+          <input type="text" id="username" required />
+          <label for="rounds">Number of Rounds:</label>
+          <input
+            type="number"
+            name="rounds"
+            id="rounds"
+            max="5"
+            min="1"
+            required
+          />
+          <label for="user-first">Me first:</label>
+          <input type="checkbox" name="user-first" id="user-first" required />
+          <div><input class="btnSubmit" type="submit" value="Play" /></div>
+        </form>
+        <section class="user-input__right">
+          <h2>Pic Your Symbol</h2>
+          <div class="cards">
+            <div class="card x-card active">
+              <p class="card__symbol">X</p>
+              <p class="card__quote">X marks the spot! Ready to conquer?</p>
+            </div>
+            <div class="card o-card">
+              <p class="card__symbol">O</p>
+              <p class="card__quote">Rolling in circles, ready to strike!</p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
