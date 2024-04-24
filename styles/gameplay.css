@@ -1,0 +1,98 @@
+.game section {
+  display: flex;
+  justify-content: space-between;
+  width: 70rem;
+  height: 30rem;
+  align-items: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4.5rem;
+  background-color: var(--clr-primary-purple);
+}
+
+.game .player-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.game .player-side .left__X {
+  position: absolute;
+  top: 0rem;
+  left: 2rem;
+  font-size: 7.5rem;
+}
+.game .player-side .right__O {
+  position: absolute;
+  top: 0rem;
+  right: 2rem;
+  font-size: 7.5rem;
+}
+.game .player-side .player-score {
+  border: solid 4px;
+  padding: 1rem;
+  border-radius: 50%;
+  width: 7rem;
+  height: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5.6rem;
+}
+.game .board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--clr-primary-purple);
+  padding: 0.5rem;
+  border-radius: 10px;
+  z-index: 1;
+}
+.game .board .board__cell {
+  width: 6rem;
+  height: 6rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+}
+.game .board .board__cell:hover {
+  background-color: #dedddd;
+}
+.game .rounds {
+  position: absolute;
+  left: 50%;
+  top: 85%;
+  transform: translate(-50%);
+  border: solid 4px;
+  border-radius: 99px;
+  font-size: 2.7rem;
+  padding-inline: 1rem;
+  background-color: var(--clr-primary-purple);
+  z-index: 1;
+}
+
+.game .left {
+  background-color: #35a3f3;
+  padding-right: 5rem;
+  transition: 0.1s;
+}
+.game .right {
+  background-color: #fc5c65;
+  padding-left: 5rem;
+}
+.game .active {
+  transform-origin: right;
+  transform: scale(1.1);
+  border: solid 5px;
+  border-radius: 1rem;
+}

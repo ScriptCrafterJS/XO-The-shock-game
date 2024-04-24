@@ -4,6 +4,7 @@ const meFirst = document.getElementById("user-first");
 const btnPlay = document.querySelector(".btnSubmit");
 const cardsContainer = document.querySelector(".cards");
 const cards = document.querySelectorAll(".card");
+const btnHome = document.querySelector(".btn-home");
 
 cardsContainer.addEventListener("click", function (e) {
   cards.forEach((card) => {
@@ -42,9 +43,12 @@ btnPlay.addEventListener("click", function (e) {
     // Store the data object in localStorage
     localStorage.setItem("userData", JSON.stringify(userData));
 
-    window.location.href = "http://127.0.0.1:5500/html/index.html";
+    window.location.href = "http://127.0.0.1:5500/html/gameplay.html";
     console.log(userData);
   } else {
     alert("Please Fill Your Information");
   }
+});
+btnHome.addEventListener("click", function (e) {
+  localStorage.clear();
 });
