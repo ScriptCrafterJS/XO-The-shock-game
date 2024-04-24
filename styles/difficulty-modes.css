@@ -19,7 +19,9 @@ main .overlay {
 .navbar {
   padding: 0.1rem 0 0 0;
 }
-.navbar .navbar--home {
+.navbar .btn-home {
+  text-decoration: none;
+  color: var(--clr-primary-black);
   font-size: 2.5rem;
   background-color: var(--clr-primary-purple);
   width: fit-content;
@@ -27,12 +29,9 @@ main .overlay {
   padding: 1rem;
   letter-spacing: 1.2px;
   position: relative;
+  cursor: pointer;
 }
 
-.navbar .navbar--home a {
-  text-decoration: none;
-  color: var(--clr-primary-black);
-}
 .difficulty-modes {
   width: fit-content;
   margin-inline: auto;
