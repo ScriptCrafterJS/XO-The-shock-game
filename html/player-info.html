@@ -17,12 +17,16 @@
       href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap"
       rel="stylesheet"
     />
+    <!-- JavaScript Scripts-->
+    <script defer src="../app/player-info.js"></script>
   </head>
   <body>
     <main>
       <div class="overlay"></div>
       <nav class="navbar">
-        <h2 class="navbar--home"><a type="button" href="">&lt; Home</a></h2>
+        <h2 class="navbar--home">
+          <a type="button" href="index.html">&lt; Home</a>
+        </h2>
       </nav>
       <section class="user-input">
         <form class="user-input__left" action="#">
@@ -39,12 +43,12 @@
           />
           <label for="user-first">Me first:</label>
           <input type="checkbox" name="user-first" id="user-first" required />
-          <div><input class="btnSubmit" type="submit" value="Play" /></div>
+          <input class="btnSubmit" type="submit" value="Play" />
         </form>
         <section class="user-input__right">
           <h2>Pic Your Symbol</h2>
           <div class="cards">
-            <div class="card x-card active">
+            <div class="card x-card">
               <p class="card__symbol">X</p>
               <p class="card__quote">X marks the spot! Ready to conquer?</p>
             </div>
