@@ -81,12 +81,12 @@
   z-index: 1;
 }
 
-.game .left {
+.game .left-player {
   background-color: #35a3f3;
   padding-right: 5rem;
   transition: 0.1s;
 }
-.game .right {
+.game .right-player {
   background-color: #fc5c65;
   padding-left: 5rem;
 }
@@ -95,4 +95,14 @@
   transform: scale(1.1);
   border: solid 5px;
   border-radius: 1rem;
+  position: relative;
+}
+.game .active::before {
+  position: absolute;
+  content: "Your Turn";
+  top: -5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 4rem;
 }
