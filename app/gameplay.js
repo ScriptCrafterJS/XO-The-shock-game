@@ -77,14 +77,9 @@ gameBoard.addEventListener("click", function (e) {
       } else if (isBoardFull()) {
         alert("It's a draw!");
         checkTerminalAndReset();
-        console.log(
-          "after the check for terminal state which is the draw caused by me"
-        );
       } else {
         switchTurns();
-        console.log("turns switched normally");
         makeMinimaxMove();
-        console.log("DID I MAKE IT ?");
       }
     }
   }
@@ -105,7 +100,6 @@ function makeMinimaxMove() {
       OScore.textContent = OScoreValue;
     }
     checkTerminalAndReset();
-    console.log("dddd");
     switchTurns();
   } else if (isBoardFull()) {
     alert("It's a draw!");
@@ -117,7 +111,6 @@ function makeMinimaxMove() {
 
 function checkTerminalAndReset() {
   if (currentRoundValue === numberOfRounds) {
-    console.log("end");
     // check who is the one with high score and make him win
     if (XScoreValue > OScoreValue) {
       alert("Player 'X' WON THE MATCH!");
@@ -197,7 +190,7 @@ function minimax(boardCells, isMaximizing, alpha, beta) {
         let evaluate = minimax(boardCells, false, alpha, beta);
         cell.textContent = ""; //undo the move
         maxEval = Math.max(maxEval, evaluate);
-        alpha = Math.max(alpha, eval);
+        alpha = Math.max(alpha, evaluate);
         if (beta <= alpha) {
           break; // beta cut-off
         }
@@ -213,7 +206,7 @@ function minimax(boardCells, isMaximizing, alpha, beta) {
         let evaluate = minimax(boardCells, true, alpha, beta);
         cell.textContent = ""; //undo the move
         minEval = Math.min(minEval, evaluate);
-        beta = Math.min(beta, eval);
+        beta = Math.min(beta, evaluate);
         if (beta <= alpha) {
           break; // alpha cut-off
         }
