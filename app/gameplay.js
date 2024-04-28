@@ -19,9 +19,35 @@ let currentRoundValue = 1;
 
 const userData = JSON.parse(localStorage.getItem("userData"));
 const userFirst = userData.playerFirst;
-XPlayerName.textContent = userData.username;
 const userSymbol = userData.playerSymbol;
 const numberOfRounds = Number(userData.numberOfRounds);
+const difficulty = localStorage.getItem("diff-mode");
+const playingMode = localStorage.getItem("playing-mode");
+
+switch (userSymbol) {
+  case "o":
+    XPlayerName.textContent = "Minimax";
+    OPlayerName.textContent = userData.username;
+    break;
+  case "x":
+    XPlayerName.textContent = userData.username;
+    OPlayerName.textContent = "Minimax";
+    break;
+}
+
+let depth = 0;
+
+switch (difficulty) {
+  case "hard":
+    depth = 8;
+    break;
+  case "medium":
+    depth = 4;
+    break;
+  case "easy":
+    depth = 1;
+    break;
+}
 
 if (userFirst) {
   if (userSymbol === "o") {
@@ -36,7 +62,9 @@ if (userFirst) {
     currentPlayer = "x";
   }
   makePlayerActive(currentPlayer);
-  makeMinimaxMove();
+  if (playingMode === "single-player") {
+    makeMinimaxMove();
+  }
 }
 
 function makePlayerActive(symbol) {
@@ -65,7 +93,6 @@ gameBoard.addEventListener("click", function (e) {
     if (e.target.textContent === "") {
       e.target.textContent = currentPlayer;
       if (hasPlayerWon(boardCells, currentPlayer)) {
-        alert("Player " + currentPlayer + " Got Point");
         if (currentPlayer === "x") {
           XScoreValue++;
           XScore.textContent = XScoreValue;
@@ -73,13 +100,21 @@ gameBoard.addEventListener("click", function (e) {
           OScoreValue++;
           OScore.textContent = OScoreValue;
         }
-        checkTerminalAndReset();
+        markTerminalBlocks(boardCells, currentPlayer);
+        setTimeout(() => {
+          alert("Player " + currentPlayer + " Got Point");
+          checkTerminalAndReset();
+        }, 500);
       } else if (isBoardFull()) {
-        alert("It's a draw!");
-        checkTerminalAndReset();
+        setTimeout(() => {
+          alert("It's a draw!");
+          checkTerminalAndReset();
+        });
       } else {
         switchTurns();
-        makeMinimaxMove();
+        if (playingMode === "single-player") {
+          makeMinimaxMove();
+        }
       }
     }
   }
@@ -87,11 +122,10 @@ gameBoard.addEventListener("click", function (e) {
 
 // it gets the best move in i and j then play it then flip the turn
 function makeMinimaxMove() {
-  const bestMoveCell = findBestMove(boardCells); // here the i and j coordinates for the best move
+  const bestMoveCell = findBestMove(boardCells, depth); // here the i and j coordinates for the best move
   bestMoveCell.textContent = currentPlayer;
 
   if (hasPlayerWon(boardCells, currentPlayer)) {
-    alert("Player " + currentPlayer + " Got Point");
     if (currentPlayer === "x") {
       XScoreValue++;
       XScore.textContent = XScoreValue;
@@ -99,11 +133,17 @@ function makeMinimaxMove() {
       OScoreValue++;
       OScore.textContent = OScoreValue;
     }
-    checkTerminalAndReset();
-    switchTurns();
+    markTerminalBlocks(boardCells, currentPlayer);
+    setTimeout(() => {
+      alert("Player " + currentPlayer + " Got Point");
+      checkTerminalAndReset();
+      switchTurns();
+    }, 500);
   } else if (isBoardFull()) {
-    alert("It's a draw!");
-    checkTerminalAndReset();
+    setTimeout(() => {
+      alert("It's a draw!");
+      checkTerminalAndReset();
+    });
   } else {
     switchTurns();
   }
@@ -112,9 +152,12 @@ function makeMinimaxMove() {
 function checkTerminalAndReset() {
   if (currentRoundValue === numberOfRounds) {
     // check who is the one with high score and make him win
+
     if (XScoreValue > OScoreValue) {
+      markTerminalBlocks(boardCells, "x");
       alert("Player 'X' WON THE MATCH!");
     } else if (XScoreValue < OScoreValue) {
+      markTerminalBlocks(boardCells, "o");
       alert("Player 'O' WON THE MATCH!");
     } else {
       alert("DRAW!");
@@ -133,7 +176,7 @@ function checkTerminalAndReset() {
   resetBoard();
 }
 
-function findBestMove(boardCells) {
+function findBestMove(boardCells, depth) {
   let bestMove = null;
   let bestScore = Number.MIN_SAFE_INTEGER; // because we want to pic the best move of all of the moves in the current state of the board
 
@@ -150,12 +193,13 @@ function findBestMove(boardCells) {
       // if he found the best move for the opponent the ai puts his move in it
       // preventing the player from playing optimally
 
-      //here we switch the turn so the ai let the opponent play after him and see what is the result
+      //(false parameter) here we switch the turn so the ai let the opponent play after him and see what is the result
       let score = minimax(
         boardCells,
         false,
         Number.NEGATIVE_INFINITY,
-        Number.POSITIVE_INFINITY
+        Number.POSITIVE_INFINITY,
+        depth
       ); // false indicating that its not the ai's move(the ai is letting the opponent play)
       cell.textContent = ""; //undo the move so we can check another available move
 
@@ -163,14 +207,13 @@ function findBestMove(boardCells) {
         // we pic the best move out of all the possible moves
         bestScore = score;
         bestMove = cell;
-        console.log(bestMove);
       }
     }
   }
   return bestMove;
 }
 
-function minimax(boardCells, isMaximizing, alpha, beta) {
+function minimax(boardCells, isMaximizing, alpha, beta, depth) {
   if (hasPlayerWon(boardCells, userSymbol)) {
     //if the opponent wins minimize
     return -1;
@@ -182,12 +225,16 @@ function minimax(boardCells, isMaximizing, alpha, beta) {
     return 0;
   }
 
+  if (depth === 0) {
+    return 0; //so i make assumption that after some searching in the tree this path will lead to tie
+  }
+
   if (isMaximizing) {
     let maxEval = -1;
     for (let cell of boardCells) {
       if (cell.textContent === "") {
         cell.textContent = aiSymbol;
-        let evaluate = minimax(boardCells, false, alpha, beta);
+        let evaluate = minimax(boardCells, false, alpha, beta, depth - 1);
         cell.textContent = ""; //undo the move
         maxEval = Math.max(maxEval, evaluate);
         alpha = Math.max(alpha, evaluate);
@@ -196,14 +243,14 @@ function minimax(boardCells, isMaximizing, alpha, beta) {
         }
       }
     }
-    return maxEval;
+    return maxEval; //this is the value that will be propagated after each level comparing finish
   } else {
     // it calculates the best for the player and reduces the score
-    let minEval = 1;
+    let minEval = 1; //because this one is minimizing give it a high value (1 is more than enough) because the values are around -1,0,1
     for (let cell of boardCells) {
       if (cell.textContent === "") {
         cell.textContent = userSymbol;
-        let evaluate = minimax(boardCells, true, alpha, beta);
+        let evaluate = minimax(boardCells, true, alpha, beta, depth - 1);
         cell.textContent = ""; //undo the move
         minEval = Math.min(minEval, evaluate);
         beta = Math.min(beta, evaluate);
@@ -212,13 +259,13 @@ function minimax(boardCells, isMaximizing, alpha, beta) {
         }
       }
     }
-    return minEval;
+    return minEval; //this is the value that will be propagated after each level comparing finish
   }
 }
 
 function hasPlayerWon(boardCells, player) {
   //check rows, columns, and diagonals
-  const tempBoard = fillTempBoard(boardCells);
+  let tempBoard = fillTempBoard(boardCells);
 
   for (let i = 0; i < 3; i++) {
     //this one for columns
@@ -227,6 +274,7 @@ function hasPlayerWon(boardCells, player) {
       tempBoard[i][1].textContent === player &&
       tempBoard[i][2].textContent === player
     ) {
+      tempBoard = null;
       return true;
     }
     //this one for rows
@@ -235,6 +283,7 @@ function hasPlayerWon(boardCells, player) {
       tempBoard[1][i].textContent === player &&
       tempBoard[2][i].textContent === player
     ) {
+      tempBoard = null;
       return true;
     }
   }
@@ -245,6 +294,7 @@ function hasPlayerWon(boardCells, player) {
     tempBoard[1][1].textContent === player &&
     tempBoard[2][2].textContent === player
   ) {
+    tempBoard = null;
     return true;
   }
   //this one for right diagonal
@@ -253,8 +303,10 @@ function hasPlayerWon(boardCells, player) {
     tempBoard[1][1].textContent === player &&
     tempBoard[2][0].textContent === player
   ) {
+    tempBoard = null;
     return true;
   }
+  tempBoard = null;
   return false;
 }
 
@@ -283,5 +335,64 @@ function isBoardFull() {
 function resetBoard() {
   for (let cell of boardCells) {
     cell.textContent = "";
+    cell.style.backgroundColor = "white";
   }
+}
+
+function markTerminalBlocks(boardCells, player) {
+  //check rows, columns, and diagonals
+  let tempBoard = fillTempBoard(boardCells);
+
+  for (let i = 0; i < 3; i++) {
+    //this one for columns
+    if (
+      tempBoard[i][0].textContent === player &&
+      tempBoard[i][1].textContent === player &&
+      tempBoard[i][2].textContent === player
+    ) {
+      tempBoard[i][0].style.backgroundColor = "#f8e559";
+      tempBoard[i][1].style.backgroundColor = "#f8e559";
+      tempBoard[i][2].style.backgroundColor = "#f8e559";
+      return true;
+    }
+    //this one for rows
+    if (
+      tempBoard[0][i].textContent === player &&
+      tempBoard[1][i].textContent === player &&
+      tempBoard[2][i].textContent === player
+    ) {
+      tempBoard[0][i].style.backgroundColor = "#f8e559";
+      tempBoard[1][i].style.backgroundColor = "#f8e559";
+      tempBoard[2][i].style.backgroundColor = "#f8e559";
+      tempBoard = null;
+      return true;
+    }
+  }
+  // here its only two dagonals to check them
+  //this one for left diagonal
+  if (
+    tempBoard[0][0].textContent === player &&
+    tempBoard[1][1].textContent === player &&
+    tempBoard[2][2].textContent === player
+  ) {
+    tempBoard[0][0].style.backgroundColor = "#f8e559";
+    tempBoard[1][1].style.backgroundColor = "#f8e559";
+    tempBoard[2][2].style.backgroundColor = "#f8e559";
+    tempBoard = null;
+    return true;
+  }
+  //this one for right diagonal
+  if (
+    tempBoard[0][2].textContent === player &&
+    tempBoard[1][1].textContent === player &&
+    tempBoard[2][0].textContent === player
+  ) {
+    tempBoard[0][2].style.backgroundColor = "#f8e559";
+    tempBoard[1][1].style.backgroundColor = "#f8e559";
+    tempBoard[2][0].style.backgroundColor = "#f8e559";
+    tempBoard = null;
+    return true;
+  }
+  tempBoard = null;
+  return false;
 }
