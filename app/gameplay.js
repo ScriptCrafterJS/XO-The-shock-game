@@ -45,7 +45,7 @@ switch (difficulty) {
     depth = 4;
     break;
   case "easy":
-    depth = 1;
+    depth = 0;
     break;
 }
 
@@ -155,10 +155,18 @@ function checkTerminalAndReset() {
 
     if (XScoreValue > OScoreValue) {
       markTerminalBlocks(boardCells, "x");
-      alert("Player 'X' WON THE MATCH!");
+      XSide.classList.add("won-player");
+      setTimeout(() => {
+        alert("Player 'X' WON THE MATCH!");
+        XSide.classList.remove("won-player");
+      }, 500);
     } else if (XScoreValue < OScoreValue) {
       markTerminalBlocks(boardCells, "o");
-      alert("Player 'O' WON THE MATCH!");
+      OSide.classList.add("won-player");
+      setTimeout(() => {
+        alert("Player 'O' WON THE MATCH!");
+        OSide.classList.remove("won-player");
+      }, 500);
     } else {
       alert("DRAW!");
     }
