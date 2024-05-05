@@ -13,3 +13,7 @@
 .user-input__left .whom-first input {
   margin-left: 1rem;
 }
+.user-input__left .whom-first input[type="radio"] {
+  width: 1.5rem;
+  height: 1.5rem;
+}
