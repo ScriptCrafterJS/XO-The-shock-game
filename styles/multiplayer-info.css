@@ -1,0 +1,11 @@
+.user-input__right .cards .card:first-child {
+  scale: 1.09;
+}
+.user-input__right .cards .card:last-child {
+  scale: 0.9;
+}
+.user-input__right .cards .card p:first-child {
+  color: white;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+}
