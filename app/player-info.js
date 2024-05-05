@@ -52,3 +52,12 @@ btnPlay.addEventListener("click", function (e) {
 btnHome.addEventListener("click", function (e) {
   localStorage.clear();
 });
+export {
+  username,
+  numberOfRounds,
+  meFirst,
+  btnPlay,
+  cardsContainer,
+  cards,
+  btnHome,
+};

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe Shock</title>
+    <!-- css styles -->
+    <link rel="stylesheet" href="../styles/generalStyles.css" />
+    <link rel="stylesheet" href="../styles/player-info.css" />
+    <link rel="stylesheet" href="../styles/multiplayer-info.css" />
+    <!-- Render Elements Normally -->
+    <link rel="stylesheet" href="../styles/normalize.css" />
+    <!-- Google fonts "jersey" links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap"
+      rel="stylesheet"
+    />
+    <!-- JavaScript Scripts-->
+    <script type="module" defer src="../app/multiplayer-info.js"></script>
+  </head>
+  <body>
+    <main>
+      <div class="overlay"></div>
+      <nav class="navbar">
+        <a class="btn-home" type="button" href="../html/home.html">&lt; Home</a>
+      </nav>
+      <section class="user-input">
+        <form class="user-input__left" action="#">
+          <label for="player-1">Player 1:</label>
+          <input type="text" id="player-1" required maxlength="15" />
+          <label for="player-2">Player 2:</label>
+          <input type="text" id="player-2" required maxlength="15" />
+          <label for="rounds">Number of Rounds:</label>
+          <input
+            type="number"
+            name="rounds"
+            id="rounds"
+            max="5"
+            min="1"
+            required
+          />
+          <div class="whom-first">
+            <label for="x-first">X first:</label>
+            <input type="checkbox" name="x-first" id="x-first" required />
+            <label for="o-first">O first:</label>
+            <input type="checkbox" name="o-first" id="o-first" required />
+            <input class="btnSubmit" type="submit" value="Play" />
+          </div>
+        </form>
+        <section class="user-input__right">
+          <h2>Pic Your Symbols</h2>
+          <div class="cards">
+            <div class="card x-card">
+              <p>Player 1</p>
+              <p class="card__symbol">X</p>
+              <p class="card__quote">X marks the spot! Ready to conquer?</p>
+            </div>
+            <div class="card o-card">
+              <p>player 2</p>
+              <p class="card__symbol">O</p>
+              <p class="card__quote">Rolling in circles, ready to strike!</p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
