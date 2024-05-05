@@ -107,3 +107,17 @@
   color: white;
   font-size: 4rem;
 }
+
+.game section .won-player {
+  background-color: var(--clr-primary-yellow);
+  position: relative;
+}
+.game section .won-player::before {
+  position: absolute;
+  content: "🎉Winner";
+  top: -5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--clr-primary-yellow);
+  font-size: 4rem;
+}
