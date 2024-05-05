@@ -42,9 +42,9 @@ btnPlay.addEventListener("click", function (e) {
     };
     // Store the data object in localStorage
     localStorage.setItem("userData", JSON.stringify(userData));
-
-    window.location.href = "http://127.0.0.1:5500/html/gameplay.html";
-    console.log(userData);
+    const hostname = window.location.hostname;
+    const port = window.location.port;
+    window.location.href = `http://${hostname}:${port}/html/gameplay.html`;
   } else {
     alert("Please Fill Your Information");
   }
@@ -52,12 +52,3 @@ btnPlay.addEventListener("click", function (e) {
 btnHome.addEventListener("click", function (e) {
   localStorage.clear();
 });
-export {
-  username,
-  numberOfRounds,
-  meFirst,
-  btnPlay,
-  cardsContainer,
-  cards,
-  btnHome,
-};
