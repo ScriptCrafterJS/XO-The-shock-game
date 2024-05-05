@@ -17,54 +17,67 @@ let XScoreValue = 0;
 let aiSymbol = "o";
 let currentRoundValue = 1;
 
-const userData = JSON.parse(localStorage.getItem("userData"));
-const userFirst = userData.playerFirst;
-const userSymbol = userData.playerSymbol;
-const numberOfRounds = Number(userData.numberOfRounds);
-const difficulty = localStorage.getItem("diff-mode");
+let numberOfRounds = 1;
 const playingMode = localStorage.getItem("playing-mode");
 
-switch (userSymbol) {
-  case "o":
-    XPlayerName.textContent = "Minimax";
-    OPlayerName.textContent = userData.username;
-    break;
-  case "x":
-    XPlayerName.textContent = userData.username;
-    OPlayerName.textContent = "Minimax";
-    break;
-}
-
 let depth = 0;
+let userSymbol = "o";
+if (playingMode === "single-player") {
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  numberOfRounds = Number(userData.numberOfRounds);
+  const userFirst = userData.playerFirst;
+  userSymbol = userData.playerSymbol;
+  const difficulty = localStorage.getItem("diff-mode");
 
-switch (difficulty) {
-  case "hard":
-    depth = 8;
-    break;
-  case "medium":
-    depth = 4;
-    break;
-  case "easy":
-    depth = 0;
-    break;
-}
+  switch (userSymbol) {
+    case "o":
+      XPlayerName.textContent = "Minimax";
+      OPlayerName.textContent = userData.username;
+      break;
+    case "x":
+      XPlayerName.textContent = userData.username;
+      OPlayerName.textContent = "Minimax";
+      break;
+  }
 
-if (userFirst) {
-  if (userSymbol === "o") {
-    aiSymbol = "x";
+  switch (difficulty) {
+    case "hard":
+      depth = 8;
+      break;
+    case "medium":
+      depth = 4;
+      break;
+    case "easy":
+      depth = 0;
+      break;
+  }
+
+  if (userFirst) {
+    if (userSymbol === "o") {
+      aiSymbol = "x";
+    } else {
+      currentPlayer = "x";
+    }
+    makePlayerActive(currentPlayer);
+  } else {
+    if (userSymbol === "o") {
+      aiSymbol = "x";
+      currentPlayer = "x";
+    }
+    makePlayerActive(currentPlayer);
+    makeMinimaxMove();
+  }
+} else {
+  const playersData = JSON.parse(localStorage.getItem("playersData"));
+  numberOfRounds = Number(playersData.numberOfRounds);
+  if (playersData.firstPlayer === "o") {
+    currentPlayer = "o";
   } else {
     currentPlayer = "x";
   }
   makePlayerActive(currentPlayer);
-} else {
-  if (userSymbol === "o") {
-    aiSymbol = "x";
-    currentPlayer = "x";
-  }
-  makePlayerActive(currentPlayer);
-  if (playingMode === "single-player") {
-    makeMinimaxMove();
-  }
+  XPlayerName.textContent = playersData.XPlayerName;
+  OPlayerName.textContent = playersData.OPlayerName;
 }
 
 function makePlayerActive(symbol) {
@@ -342,7 +355,7 @@ function isBoardFull() {
 
 function resetBoard() {
   for (let cell of boardCells) {
-    cell.textContent = "";
+    cell.textContent = null;
     cell.style.backgroundColor = "white";
   }
 }
