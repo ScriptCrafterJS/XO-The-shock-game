@@ -1,37 +1,4 @@
 /* Difficulty Modes Styling [START] */
-body {
-  background-color: var(--clr-primary-navy);
-}
-main {
-  background-image: url("../images/Grid.png");
-  position: relative;
-  z-index: 0;
-  background-color: var(--clr-primary-navy);
-  height: 100vh;
-}
-main .overlay {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  position: absolute;
-  z-index: -1;
-}
-.navbar {
-  padding: 0.1rem 0 0 0;
-}
-.navbar .btn-home {
-  text-decoration: none;
-  color: var(--clr-primary-black);
-  font-size: 2.5rem;
-  background-color: var(--clr-primary-purple);
-  width: fit-content;
-  margin-top: 1rem;
-  padding: 1rem;
-  letter-spacing: 1.2px;
-  position: relative;
-  cursor: pointer;
-}
-
 .difficulty-modes {
   width: fit-content;
   margin-inline: auto;
