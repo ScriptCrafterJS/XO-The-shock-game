@@ -42,23 +42,34 @@
             required
           />
           <div class="whom-first">
-            <label for="x-first">X first:</label>
-            <input type="checkbox" name="x-first" id="x-first" required />
-            <label for="o-first">O first:</label>
-            <input type="checkbox" name="o-first" id="o-first" required />
+            <label> X first</label>
+            <input
+              type="radio"
+              name="player-first"
+              value="X"
+              id="x-first"
+              required
+            />
+            <label> O first</label>
+            <input
+              type="radio"
+              name="player-first"
+              value="O"
+              id="o-first"
+              required
+            />
             <input class="btnSubmit" type="submit" value="Play" />
           </div>
         </form>
         <section class="user-input__right">
-          <h2>Pic Your Symbols</h2>
           <div class="cards">
             <div class="card x-card">
-              <p>Player 1</p>
+              <p class="x-player-name">Player 1</p>
               <p class="card__symbol">X</p>
               <p class="card__quote">X marks the spot! Ready to conquer?</p>
             </div>
             <div class="card o-card">
-              <p>player 2</p>
+              <p class="o-player-name">player 2</p>
               <p class="card__symbol">O</p>
               <p class="card__quote">Rolling in circles, ready to strike!</p>
             </div>
