@@ -44,7 +44,7 @@ btnPlay.addEventListener("click", function (e) {
     localStorage.setItem("userData", JSON.stringify(userData));
     const hostname = window.location.hostname;
     const port = window.location.port;
-    window.location.href = `http://${hostname}:${port}/html/gameplay.html`;
+    window.location.href = `gameplay.html`;
   } else {
     alert("Please Fill Your Information");
   }
